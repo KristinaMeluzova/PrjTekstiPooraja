@@ -3,6 +3,7 @@
   <PropertyGroup>
     <RootNamespace>PrjTekstiPooraja</RootNamespace>
     <TargetFramework>net8.0</TargetFramework>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
 
 </Project>
