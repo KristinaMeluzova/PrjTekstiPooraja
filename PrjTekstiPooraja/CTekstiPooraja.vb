@@ -57,41 +57,63 @@ Public Class CTekstiPooraja
     End Function
 End Class
 
+
 Public Class CAlgoritmilinePooraja
     Implements ITeisendused
+    'Klassi CAlgoritmilinePooraja atribuudid (muutujad)
+    Private intAlgusSym As Integer
+    Private intLoppSym As Integer
+    Private strPooratavTxt As String
 
+
+    'Liidese omaduste (atribuutide) seadistimamine
+
+    'Atribuut intAlgus seadistamine
     Private Property intAlgus As Integer Implements ITeisendused.intAlgus
         Get
-
+            Return intAlgusSym 'atribuudi küsimusel tagasta intAlgusSymbol
         End Get
         Set(value As Integer)
-
+            intAlgusSym = value 'atribuudi väärtuste seadistamine
         End Set
     End Property
 
+    'Atribuut intLopp seadistamine
     Private Property intLopp As Integer Implements ITeisendused.intLopp
         Get
-
+            Return intLoppSym 'atribuudi küsimusel tagasta intLoppSymbol
         End Get
         Set(value As Integer)
-
+            strPooratavTxt = value 'atribuudi väärtuste seadistamine
         End Set
     End Property
 
+    'Atribuut strTekst seadistamine
     Private Property strTekst As String Implements ITeisendused.strTekst
         Get
-
+            Return strPooratavTxt 'atribuudi küsimusel tagasta strPooratavTekst
         End Get
         Set(value As String)
-
+            strPooratavTxt = value 'atribuudi väärtuste seadistamine
         End Set
     End Property
 
-    Private Sub teisendaTekst(ByRef strSisendTekst As String) Implements ITeisendused.teisendaTekst
+    'Funktsioon algoritmiliselt teksti tagurpidi pööramiseks
+    Public Function reversedText() As String
+        Dim tempArray As String = " "
+        Dim i As Integer
+        For i = strTekst.Length - 1 To 0 Step -1
+            tempArray &= strTekst(i)
+        Next
+        Return tempArray
+    End Function
 
+    Private Sub teisendaTekst(ByRef strSisendTekst As String) Implements ITeisendused.teisendaTekst
+        strPooratavTxt = reversedText(strSisendTekst)
     End Sub
 
     Private Function pooraTekst() As String Implements ITeisendused.pooraTekst
-
+        Return reversedText(strPooratavTxt)
     End Function
+
 End Class
